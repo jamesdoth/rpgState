@@ -84,11 +84,21 @@ namespace rpgState.States
             spriteBatch.Begin(_camera);
 
             spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
-            player.anim.Draw(spriteBatch);
+            spriteBatch.DrawString(gameFont, "Score: " + score.ToString(), new Vector2(player.Position.X - 600, player.Position.Y - 325), Color.White);
+
+            foreach (Enemy e in Enemy.enemies)
+            {
+                e.anim.Draw(spriteBatch);
+            }
 
             foreach (Projectile proj in Projectile.projectiles)
             {
                 spriteBatch.Draw(ball, new Vector2(proj.Position.X - 48, proj.Position.Y - 48), Color.White);
+            }
+
+            if (!player.dead)
+            {
+                player.anim.Draw(spriteBatch);
             }
 
             spriteBatch.End();
@@ -103,6 +113,11 @@ namespace rpgState.States
         {
             player.Update(gameTime);
 
+            if (!player.dead)
+            {
+                Controller.Update(gameTime, skull);
+            }
+
             _camera.Position = player.Position;
             _camera.Update(gameTime);
 
@@ -110,6 +125,34 @@ namespace rpgState.States
             {
                 proj.Update(gameTime);
             }
+
+            foreach (Enemy e in Enemy.enemies)
+            {
+                e.Update(gameTime, player.Position, player.dead);
+                int sum = 32 + e.radius;
+                if (Vector2.Distance(player.Position, e.Position) < sum)
+                {
+                    player.dead = true;
+                }
+            }
+
+            foreach (Projectile proj in Projectile.projectiles)
+            {
+                foreach (Enemy enemy in Enemy.enemies)
+                {
+                    int sum = proj.radius + enemy.radius;
+                    if (Vector2.Distance(proj.Position, enemy.Position) < sum)
+                    {
+                        MySounds.enemyHit.Play(1f, -1.0f, 0f);
+                        proj.Collided = true;
+                        enemy.Dead = true;
+                        score++;
+                    }
+                }
+            }
+
+            Projectile.projectiles.RemoveAll(p => p.Collided);
+            Enemy.enemies.RemoveAll(e => e.Dead);
         }
     }
 }
