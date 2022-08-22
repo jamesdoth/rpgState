@@ -65,8 +65,8 @@ namespace rpgState.States
           : base(game, graphicsDevice, Content)
         {
             background = Content.Load<Texture2D>("background");
-            buttonTexture = _content.Load<Texture2D>("button");
-            buttonFont = _content.Load<SpriteFont>("spaceFont");
+            buttonTexture = Content.Load<Texture2D>("button");
+            buttonFont = Content.Load<SpriteFont>("spaceFont");
 
             playerSprite = Content.Load<Texture2D>("player");
             walkDown = Content.Load<Texture2D>("walkDown");
@@ -232,6 +232,7 @@ namespace rpgState.States
                 });
                 ScoreManager.Save(_scoreManager);
                 _score = 0;
+                Enemy.enemies.Clear();
 
                 foreach (var component in _components)
                 {

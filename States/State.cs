@@ -28,13 +28,13 @@ namespace rpgState.States
 
         public abstract void PostUpdate(GameTime gameTime);
 
-        public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager Content)
         {
             _game = game;
 
             _graphicsDevice = graphicsDevice;
 
-            _content = content;
+            _content = Content;
         }
 
         public abstract void Update(GameTime gameTime);
