@@ -37,3 +37,8 @@ C:\Users\gusto\Desktop\CSharp\rpgState\obj\Debug\net6.0\refint\rpgState.dll
 C:\Users\gusto\Desktop\CSharp\rpgState\obj\Debug\net6.0\rpgState.pdb
 C:\Users\gusto\Desktop\CSharp\rpgState\obj\Debug\net6.0\rpgState.genruntimeconfig.cache
 C:\Users\gusto\Desktop\CSharp\rpgState\obj\Debug\net6.0\ref\rpgState.dll
+C:\Users\gusto\Desktop\CSharp\rpgState\bin\Debug\net6.0\Comora.dll
+C:\Users\gusto\Desktop\CSharp\rpgState\bin\Debug\net6.0\Content\blip.xnb
+C:\Users\gusto\Desktop\CSharp\rpgState\bin\Debug\net6.0\Content\nature.ogg
+C:\Users\gusto\Desktop\CSharp\rpgState\bin\Debug\net6.0\Content\nature.xnb
+C:\Users\gusto\Desktop\CSharp\rpgState\bin\Debug\net6.0\Content\explode.xnb

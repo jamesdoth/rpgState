@@ -12,14 +12,11 @@ namespace rpgState
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
         
         public static int WIDTH = 1280;
-        public static int HEIGHT = 720;
-        
+        public static int HEIGHT = 720;        
 
         private State _currentState;
-
         private State _nextState;
 
         public void ChangeState(State state)
@@ -40,13 +37,10 @@ namespace rpgState
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {
-            
-            
+        {            
             _graphics.PreferredBackBufferWidth = WIDTH;
             _graphics.PreferredBackBufferHeight = HEIGHT;
-            _graphics.ApplyChanges();
-            
+            _graphics.ApplyChanges();           
 
             IsMouseVisible = true;
             base.Initialize();

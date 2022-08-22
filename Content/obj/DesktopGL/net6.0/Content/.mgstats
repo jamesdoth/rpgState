@@ -1,8 +1,11 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/gusto/Desktop/CSharp/rpgState/Content/background.png","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/background.xnb","TextureProcessor","Texture2DContent",70634,24920149,0.7689952
 "C:/Users/gusto/Desktop/CSharp/rpgState/Content/ball.png","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/ball.xnb","TextureProcessor","Texture2DContent",699,36949,0.0023887
+"C:/Users/gusto/Desktop/CSharp/rpgState/Content/blip.wav","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/blip.xnb","SoundEffectProcessor","SoundEffectContent",7218,7279,1.4628224
 "C:/Users/gusto/Desktop/CSharp/rpgState/Content/button.png","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/button.xnb","TextureProcessor","Texture2DContent",17495,53893,0.0029751
+"C:/Users/gusto/Desktop/CSharp/rpgState/Content/explode.wav","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/explode.xnb","SoundEffectProcessor","SoundEffectContent",50988,51049,1.4577943
 "C:/Users/gusto/Desktop/CSharp/rpgState/Content/galleryFont.spritefont","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/galleryFont.xnb","FontDescriptionProcessor","SpriteFontContent",2065,70687,0.1019475
+"C:/Users/gusto/Desktop/CSharp/rpgState/Content/nature.ogg","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/nature.xnb","SongProcessor","SongContent",1048881,124,2.3957574
 "C:/Users/gusto/Desktop/CSharp/rpgState/Content/player.png","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/player.xnb","TextureProcessor","Texture2DContent",1072,36949,0.0024356
 "C:/Users/gusto/Desktop/CSharp/rpgState/Content/ship.png","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/ship.xnb","TextureProcessor","Texture2DContent",3015,27285,0.0019383
 "C:/Users/gusto/Desktop/CSharp/rpgState/Content/skull.png","C:/Users/gusto/Desktop/CSharp/rpgState/Content/bin/DesktopGL/Content/skull.xnb","TextureProcessor","Texture2DContent",9601,506965,0.0126505

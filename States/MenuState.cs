@@ -34,7 +34,7 @@ namespace rpgState.States
 
             newGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 200),
+                Position = new Vector2(575, 150),
                 Text = "New Game",
             };
 
@@ -42,7 +42,7 @@ namespace rpgState.States
 
             loadGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 250),
+                Position = new Vector2(575, 300),
                 Text = "Load Game",
             };
 
@@ -50,7 +50,7 @@ namespace rpgState.States
 
             quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 300),
+                Position = new Vector2(575, 450),
                 Text = "Quit Game",
             };
 
