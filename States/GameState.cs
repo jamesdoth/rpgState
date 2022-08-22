@@ -13,6 +13,8 @@ using rpgState;
 using System.Reflection.Metadata;
 
 using Comora;
+using rpgState.Managers;
+using rpgState.Controls;
 
 namespace rpgState.States
 {
@@ -48,12 +50,24 @@ namespace rpgState.States
 
         Camera _camera;
 
+        int _score = 0;
         int score = 0;
+        private ScoreManager _scoreManager;
+
+        private List<Component> _components;
+        public SpriteFont buttonFont;
+        public Texture2D buttonTexture;
+        private Button newGameButton;
+        private Button highScoreButton;
+        private Button quitGameButton;
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager Content)
           : base(game, graphicsDevice, Content)
         {
             background = Content.Load<Texture2D>("background");
+            buttonTexture = _content.Load<Texture2D>("button");
+            buttonFont = _content.Load<SpriteFont>("spaceFont");
+
             playerSprite = Content.Load<Texture2D>("player");
             walkDown = Content.Load<Texture2D>("walkDown");
             walkUp = Content.Load<Texture2D>("walkUp");
@@ -77,6 +91,39 @@ namespace rpgState.States
             MySounds.enemyHit = Content.Load<SoundEffect>("explode");
             MySounds.bgMusic = Content.Load<Song>("nature"); // .ogg = songs
             MediaPlayer.Play(MySounds.bgMusic); // .stop() .pause()
+
+            newGameButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(player.Position.X, 150),
+                Text = "New Game",
+            };
+
+            newGameButton.Click += NewGameButton_Click;
+
+            highScoreButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(player.Position.X, 300),
+                Text = "High Scores",
+            };
+
+            highScoreButton.Click += HighScoreButton_Click;
+
+            quitGameButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(player.Position.X, 450),
+                Text = "Quit Game",
+            };
+
+            quitGameButton.Click += QuitGameButton_Click;
+
+            _scoreManager = ScoreManager.Load();
+
+            _components = new List<Component>()
+            {
+                newGameButton,
+                highScoreButton,
+                quitGameButton,
+            };
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -85,7 +132,7 @@ namespace rpgState.States
 
             spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
             spriteBatch.DrawString(gameFont, "Score: " + score.ToString(), new Vector2(player.Position.X - 600, player.Position.Y - 325), Color.White);
-
+            
             foreach (Enemy e in Enemy.enemies)
             {
                 e.anim.Draw(spriteBatch);
@@ -99,9 +146,30 @@ namespace rpgState.States
             if (!player.dead)
             {
                 player.anim.Draw(spriteBatch);
+            } else
+            {
+                foreach (var component in _components)
+                {
+                    component.Draw(gameTime, spriteBatch);
+                }
             }
 
             spriteBatch.End();
+        }
+
+        private void NewGameButton_Click(object sender, EventArgs e)
+        {
+            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+        }
+
+        private void HighScoreButton_Click(object sender, EventArgs e)
+        {
+            _game.ChangeState(new HighScoreState(_game, _graphicsDevice, _content));
+        }
+
+        private void QuitGameButton_Click(object sender, EventArgs e)
+        {
+            _game.Exit();
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -146,6 +214,7 @@ namespace rpgState.States
                         MySounds.enemyHit.Play(1f, -1.0f, 0f);
                         proj.Collided = true;
                         enemy.Dead = true;
+                        _score++;
                         score++;
                     }
                 }
@@ -153,6 +222,22 @@ namespace rpgState.States
 
             Projectile.projectiles.RemoveAll(p => p.Collided);
             Enemy.enemies.RemoveAll(e => e.Dead);
+
+            if (player.dead)
+            {
+                _scoreManager.Add(new Models.Score()
+                {
+                    PlayerName = "jimbo",
+                    Value = _score,
+                });
+                ScoreManager.Save(_scoreManager);
+                _score = 0;
+
+                foreach (var component in _components)
+                {
+                    component.Update(gameTime);
+                }
+            }
         }
     }
 }

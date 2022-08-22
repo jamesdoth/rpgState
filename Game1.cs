@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using rpgState.States;
+using System;
 
 namespace rpgState
 {
@@ -14,7 +15,8 @@ namespace rpgState
         private SpriteBatch _spriteBatch;
         
         public static int WIDTH = 1280;
-        public static int HEIGHT = 720;        
+        public static int HEIGHT = 720;
+        public static Random Random;
 
         private State _currentState;
         private State _nextState;
@@ -40,7 +42,7 @@ namespace rpgState
         {            
             _graphics.PreferredBackBufferWidth = WIDTH;
             _graphics.PreferredBackBufferHeight = HEIGHT;
-            _graphics.ApplyChanges();           
+            _graphics.ApplyChanges();
 
             IsMouseVisible = true;
             base.Initialize();
