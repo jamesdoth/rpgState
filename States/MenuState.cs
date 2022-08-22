@@ -22,7 +22,7 @@ namespace rpgState.States
         public SpriteFont buttonFont;
         private Texture2D background;
         private Button newGameButton;
-        private Button loadGameButton;
+        private Button highScoreButton;
         private Button quitGameButton;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
@@ -40,13 +40,13 @@ namespace rpgState.States
 
             newGameButton.Click += NewGameButton_Click;
 
-            loadGameButton = new Button(buttonTexture, buttonFont)
+            highScoreButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(575, 300),
-                Text = "Load Game",
+                Text = "High Scores",
             };
 
-            loadGameButton.Click += LoadGameButton_Click;
+            highScoreButton.Click += HighScoreButton_Click;
 
             quitGameButton = new Button(buttonTexture, buttonFont)
             {
@@ -59,7 +59,7 @@ namespace rpgState.States
             _components = new List<Component>()
             {
                 newGameButton,
-                loadGameButton,
+                highScoreButton,
                 quitGameButton,
             };
         }
@@ -76,14 +76,14 @@ namespace rpgState.States
             spriteBatch.End();
         }
 
-        private void LoadGameButton_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Load Game");
-        }
-
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+        }
+
+        private void HighScoreButton_Click(object sender, EventArgs e)
+        {
+            _game.ChangeState(new HighScoreState(_game, _graphicsDevice, _content));
         }
 
         public override void PostUpdate(GameTime gameTime)
