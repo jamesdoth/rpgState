@@ -8,9 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace rpgState.Controls
 {
-    public class Button : Component
+    public class gsButton : Component
     {
         #region Fields
 
@@ -27,13 +28,13 @@ namespace rpgState.Controls
         public event EventHandler Click;
         public bool Clicked { get; private set; }
         public Color PenColour { get; set; }
-        public Vector2 Position { get; set; }
+        public Vector2 _position { get; set; }
 
         public Rectangle Rectangle
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)_position.X, (int)_position.Y, _texture.Width, _texture.Height);
             }
         }
 
@@ -43,11 +44,13 @@ namespace rpgState.Controls
 
         #region Methods
 
-        public Button(Texture2D texture, SpriteFont font)
+        public gsButton(Texture2D texture, SpriteFont font, Vector2 position)
         {
             _texture = texture;
 
             _font = font;
+
+            _position = position;
 
             PenColour = Color.Black;
         }

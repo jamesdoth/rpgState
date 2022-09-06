@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Controls",
+    "\\States"
   ],
-  "SelectedNode": "\\rpgState.sln",
+  "SelectedNode": "\\States\\State.cs",
   "PreviewInSolutionExplorer": false
 }
