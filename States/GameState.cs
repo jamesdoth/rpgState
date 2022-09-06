@@ -106,7 +106,11 @@ namespace rpgState.States
             MySounds.projectileSound = Content.Load<SoundEffect>("blip"); // .wav = sound effect
             MySounds.enemyHit = Content.Load<SoundEffect>("explode");
             MySounds.bgMusic = Content.Load<Song>("nature"); // .ogg = songs
-            MediaPlayer.Play(MySounds.bgMusic); // .stop() .pause()
+
+            if (!player.dead)
+            {
+                MediaPlayer.Play(MySounds.bgMusic); // .stop() .pause()
+            }
 
             newGameButton = new Button(buttonTexture, buttonFont)
             {
@@ -316,6 +320,8 @@ namespace rpgState.States
                 {
                     component.Update(gameTime);
                 }
+
+                MediaPlayer.Stop();
             }
         }
     }
