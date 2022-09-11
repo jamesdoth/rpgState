@@ -62,27 +62,12 @@ namespace rpgState.States
         private Button highScoreButton;
         private Button quitGameButton;
 
-        //public Texture2D ngBut;
-        //public Texture2D hsBut;
-        //public Texture2D qgBut;
-        //public Texture2D ngText;
-        //public Texture2D hsText;
-        //public Texture2D qgText;
-        //private gsButton ngShit;
-        //private gsButton hsShit;
-        //private gsButton qgShit;
-        //private List<Component> _shitComponent;
-
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager Content)
           : base(game, graphicsDevice, Content)
         {
             background = Content.Load<Texture2D>("background");
             buttonTexture = Content.Load<Texture2D>("button");
             buttonFont = Content.Load<SpriteFont>("spaceFont");
-
-            //ngBut = Content.Load<Texture2D>("button");
-            //hsBut = Content.Load<Texture2D>("button");
-            //qgBut = Content.Load<Texture2D>("button");
 
             playerSprite = Content.Load<Texture2D>("player");
             walkDown = Content.Load<Texture2D>("walkDown");
@@ -144,37 +129,6 @@ namespace rpgState.States
                 highScoreButton,
                 quitGameButton,
             };
-
-            //_shitComponent = new List<Component>() 
-            //{
-            //    ngShit,
-            //    hsShit,
-            //    qgShit,
-            //};
-
-            //ngShit = new gsButton(buttonTexture, buttonFont, new Vector2(player.Position.X - 70, player.Position.Y - 200))
-            //{
-            //    _position = new Vector2(player.Position.X - 70, player.Position.Y - 200),
-            //    Text = "New Game",
-            //};
-
-            //ngShit.Click += NewGameButton_Click;
-
-            //hsShit = new gsButton(buttonTexture, buttonFont, new Vector2(player.Position.X - 70, player.Position.Y - 50))
-            //{
-            //    _position = new Vector2(player.Position.X - 70, player.Position.Y - 50),
-            //    Text = "High Scores",
-            //};
-
-            //hsShit.Click += HighScoreButton_Click;
-
-            //qgShit = new gsButton(buttonTexture, buttonFont, new Vector2(player.Position.X - 70, player.Position.Y + 100))
-            //{
-            //    _position = new Vector2(player.Position.X - 70, player.Position.Y + 100),
-            //    Text = "Quit Game",
-            //};
-
-            //qgShit.Click += QuitGameButton_Click;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -217,24 +171,6 @@ namespace rpgState.States
                 {
                     component.Draw(gameTime, spriteBatch);
                 }
-
-
-                //foreach (var comp in _shitComponent)
-                //{
-                //    comp.Draw(gameTime, spriteBatch);
-                //}
-
-                //ngShit.Draw(gameTime, spriteBatch);
-                //hsShit.Draw(gameTime, spriteBatch);
-                //qgShit.Draw(gameTime, spriteBatch);
-
-
-                //spriteBatch.Draw(ngBut, new Vector2(player.Position.X - 70, player.Position.Y - 200), Color.White);
-                //spriteBatch.Draw(hsBut, new Vector2(player.Position.X - 70, player.Position.Y - 50), Color.White);
-                //spriteBatch.Draw(qgBut, new Vector2(player.Position.X - 70, player.Position.Y + 100), Color.White);
-                //spriteBatch.DrawString(buttonFont, "New Game", new Vector2(player.Position.X - 129, player.Position.Y - 171), Color.Black);
-                //spriteBatch.DrawString(buttonFont, "High Scores", new Vector2(player.Position.X - 129, player.Position.Y - 21), Color.Black);
-                //spriteBatch.DrawString(buttonFont, "Quit Game", new Vector2(player.Position.X - 129, player.Position.Y + 129), Color.Black);                
             }
 
             spriteBatch.End();
