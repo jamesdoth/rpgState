@@ -62,6 +62,8 @@ namespace rpgState.States
         private Button highScoreButton;
         private Button quitGameButton;
 
+        private bool scoreManager;
+
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager Content)
           : base(game, graphicsDevice, Content)
         {
@@ -243,21 +245,25 @@ namespace rpgState.States
 
             if (player.dead)
             {
-                _scoreManager.Add(new Models.Score()
+                if (!scoreManager)
                 {
-                    PlayerName = "jimbo",
-                    Value = _score,
-                });
-                ScoreManager.Save(_scoreManager);
-                _score = 0;
+                    _scoreManager.Add(new Models.Score()
+                    {
+                        PlayerName = "jimbo",
+                        Value = _score,
+                    });
+                    ScoreManager.Save(_scoreManager);
+                    _score = 0;
+                    scoreManager = true;
+                }
+
                 Enemy.enemies.Clear();
+                MediaPlayer.Stop();
 
                 foreach (var component in _components)
                 {
                     component.Update(gameTime);
                 }
-
-                MediaPlayer.Stop();
             }
         }
     }

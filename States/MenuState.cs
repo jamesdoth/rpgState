@@ -80,7 +80,7 @@ namespace rpgState.States
         {
             _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
         }
-
+        
         private void HighScoreButton_Click(object sender, EventArgs e)
         {
             _game.ChangeState(new HighScoreState(_game, _graphicsDevice, _content));
