@@ -7,7 +7,7 @@ namespace rpgState
 {
     internal class Player
     {
-        private Vector2 position = new Vector2(500, 300);
+        private Vector2 position = new Vector2(750, 725);
         private int speed = 300;
         private Dir direction = Dir.Down;
         private KeyboardState kStateOld = Keyboard.GetState();
@@ -124,6 +124,12 @@ namespace rpgState
                 }
             }
             kStateOld = kState;
+
+            if (dead)
+            {
+                position = new Vector2(750, 725);
+                dead = true;
+            }
         }
     }
 }

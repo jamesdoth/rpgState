@@ -58,7 +58,7 @@ namespace rpgState.States
 
         public SpriteFont buttonFont;
         public Texture2D buttonTexture;
-        private Button newGameButton;
+        private Button restartButton;
         private Button highScoreButton;
         private Button quitGameButton;
 
@@ -99,13 +99,13 @@ namespace rpgState.States
                 MediaPlayer.Play(MySounds.bgMusic); // .stop() .pause()
             }
 
-            newGameButton = new Button(buttonTexture, buttonFont)
+            restartButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(/*player.Position.X*/575, 150),
-                Text = "New Game",
+                Text = "Restart Game",
             };
 
-            newGameButton.Click += NewGameButton_Click;
+            restartButton.Click += ResetGameButton_Click;
 
             highScoreButton = new Button(buttonTexture, buttonFont)
             {
@@ -127,7 +127,7 @@ namespace rpgState.States
 
             _components = new List<Component>()
             {
-                newGameButton,
+                restartButton,
                 highScoreButton,
                 quitGameButton,
             };
@@ -177,10 +177,9 @@ namespace rpgState.States
 
             spriteBatch.End();
         }
-
-        private void NewGameButton_Click(object sender, EventArgs e)
+        private void ResetGameButton_Click(object sender, EventArgs e)
         {
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            Reset();
         }
 
         private void HighScoreButton_Click(object sender, EventArgs e)
@@ -191,6 +190,15 @@ namespace rpgState.States
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             _game.Exit();
+        }
+
+        private void Reset()
+        {
+            player.dead = false;
+            scoreManager = false;
+            score = 0;
+            _score = 0;
+            MediaPlayer.Play(MySounds.bgMusic);
         }
 
         public override void PostUpdate(GameTime gameTime)
