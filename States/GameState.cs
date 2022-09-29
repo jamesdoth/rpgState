@@ -135,21 +135,22 @@ namespace rpgState.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (!player.dead)
-            {
-                spriteBatch.Begin(_camera);
-            } else
-            {
-                spriteBatch.Begin();
-            }
 
             if (!player.dead)
             {
+                spriteBatch.Begin(_camera);
                 spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
                 spriteBatch.DrawString(gameFont, "Score: " + score.ToString(), new Vector2(player.Position.X - 600, player.Position.Y - 325), Color.White);
-            } else
+                player.anim.Draw(spriteBatch);
+            }
+            else
             {
+                spriteBatch.Begin();
                 spriteBatch.DrawString(gameFont, "Score: " + score.ToString(), new Vector2(40, 35), Color.White);
+                foreach (var component in _components)
+                {
+                    component.Draw(gameTime, spriteBatch);
+                }
             }
 
 
@@ -162,17 +163,6 @@ namespace rpgState.States
             foreach (Projectile proj in Projectile.projectiles)
             {
                 spriteBatch.Draw(ball, new Vector2(proj.Position.X - 48, proj.Position.Y - 48), Color.White);
-            }
-
-            if (!player.dead)
-            {
-                player.anim.Draw(spriteBatch);
-            } else
-            {
-                foreach (var component in _components)
-                {
-                    component.Draw(gameTime, spriteBatch);
-                }
             }
 
             spriteBatch.End();
@@ -266,6 +256,7 @@ namespace rpgState.States
                 }
 
                 Enemy.enemies.Clear();
+                Projectile.projectiles.Clear();
                 MediaPlayer.Stop();
 
                 foreach (var component in _components)
