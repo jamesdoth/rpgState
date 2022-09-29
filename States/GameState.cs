@@ -143,15 +143,15 @@ namespace rpgState.States
                 spriteBatch.Begin();
             }
 
-            spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
             if (!player.dead)
             {
+                spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
                 spriteBatch.DrawString(gameFont, "Score: " + score.ToString(), new Vector2(player.Position.X - 600, player.Position.Y - 325), Color.White);
             } else
             {
                 spriteBatch.DrawString(gameFont, "Score: " + score.ToString(), new Vector2(40, 35), Color.White);
             }
-            
+
 
 
             foreach (Enemy e in Enemy.enemies)
